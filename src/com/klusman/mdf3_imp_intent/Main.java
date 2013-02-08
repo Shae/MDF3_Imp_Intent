@@ -28,6 +28,7 @@ public class Main extends Activity {
     Button btnSUB;
     Button btnANG_up;
     Button btnANG_dwn;
+    Button go;
     ImageView img;
     Bitmap image;
     int alpha;
@@ -51,8 +52,10 @@ public class Main extends Activity {
         btnSUB = (Button)findViewById(R.id.btnMINUS);
         btnANG_up = (Button)findViewById(R.id.btnANG_UP);
         btnANG_dwn = (Button)findViewById(R.id.btnANG_DWN);
+        go = (Button)findViewById(R.id.button1);
         
-        alpha = (int) ((img.getAlpha())*100);
+        //alpha = (int) ((img.getAlpha())*100);  
+        alpha = (int) (img.getImageAlpha()); 
         String newTV = String.valueOf(alpha);
         tv.setText(String.valueOf(newTV));
         av.setText(String.valueOf(f));
@@ -73,10 +76,8 @@ public class Main extends Activity {
 				try {
 					myNum = Integer.parseInt(tv.getText().toString());
 					if(myNum < 255){
-						myNum = myNum + 5;
+						myNum = myNum + 15;
 						tv.setText(String.valueOf(myNum));
-						float i = myNum * 0.01f;
-						Log.i("FLOAT VALUE", String.valueOf(i));
 						img.setAlpha(myNum);
 						
 					}
@@ -96,7 +97,7 @@ public class Main extends Activity {
 				try {
 					myNum = Integer.parseInt(tv.getText().toString());
 					if(myNum > 0){
-					myNum = myNum - 5;
+					myNum = myNum - 15;
 					tv.setText(String.valueOf(myNum));
 					img.setAlpha(myNum);
 					}
@@ -149,7 +150,15 @@ public class Main extends Activity {
 			}
 		});
         
-        
+        go.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+		
+				myToast("SEND function still under construction");
+				
+			}
+		});
         
     }
 
@@ -174,13 +183,3 @@ public class Main extends Activity {
 	
 }
 
-//Uri imageUri = (Uri) getIntent().getExtras().get(Intent.EXTRA_STREAM);
-//        	try {
-//        	//	Bitmap bmp=BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-//				Bitmap bitIMG = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-//				img.setImageBitmap(bmp);
-//			} catch (FileNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} 
-//        	
