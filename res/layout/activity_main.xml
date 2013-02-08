@@ -64,4 +64,61 @@
         android:textSize="20sp"
         tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/btnANG_UP"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="+"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnANG_DWN"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_toLeftOf="@+id/btnANG_UP"
+        android:text="-"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/btnANG_DWN"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="ANGLE"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView01"
+        android:layout_alignBottom="@+id/TextView01"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/textView1"
+        android:gravity="center"
+        android:text="ALPHA"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/angleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnANG_UP"
+        android:layout_alignLeft="@+id/btnANG_DWN"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="50"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
 </RelativeLayout>

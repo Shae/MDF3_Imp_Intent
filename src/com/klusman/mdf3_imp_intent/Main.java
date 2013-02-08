@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -16,16 +17,21 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity {
 	TextView tv;
+	TextView av;
     Button btnADD;
     Button btnSUB;
+    Button btnANG_up;
+    Button btnANG_dwn;
     ImageView img;
     Bitmap image;
     int alpha;
+    float f = 0f;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +45,17 @@ public class Main extends Activity {
         Bundle extras = getIntent().getExtras();
         
         
-        
         tv = (TextView)findViewById(R.id.textView1);
+        av = (TextView)findViewById(R.id.angleTxt);
         btnADD = (Button)findViewById(R.id.btnPLUS);
         btnSUB = (Button)findViewById(R.id.btnMINUS);
+        btnANG_up = (Button)findViewById(R.id.btnANG_UP);
+        btnANG_dwn = (Button)findViewById(R.id.btnANG_DWN);
         
         alpha = (int) ((img.getAlpha())*100);
         String newTV = String.valueOf(alpha);
         tv.setText(String.valueOf(newTV));
-        
+        av.setText(String.valueOf(f));
         if(extras != null){
         	img.setImageURI((Uri) getIntent().getExtras().get(Intent.EXTRA_STREAM));  // using the URI to get the image location
         	
@@ -61,7 +69,7 @@ public class Main extends Activity {
 			@Override
 			public void onClick(View v) {
 				int myNum = 0;
-				Log.i("BUTTON-UP", "STEP 1 Hit");
+				
 				try {
 					myNum = Integer.parseInt(tv.getText().toString());
 					if(myNum < 255){
@@ -84,7 +92,7 @@ public class Main extends Activity {
 			@Override
 			public void onClick(View v) {
 				int myNum = 0;
-				Log.i("BUTTON-DOWN", "STEP 1 Hit");
+				
 				try {
 					myNum = Integer.parseInt(tv.getText().toString());
 					if(myNum > 0){
@@ -99,7 +107,47 @@ public class Main extends Activity {
 			}
 		});
         
+        btnANG_dwn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				f = f - 15f;
+				if(f == -360){
+					f = 0f;
+				}else if(f == 360){
+					f = 0f;
+				}
+				av.setText(String.valueOf(f));
+				Matrix matrix=new Matrix();
+				img.setScaleType(ScaleType.MATRIX);   
+				matrix.postRotate( f, img.getDrawable().getBounds().width()/2, img.getDrawable().getBounds().height()/2);
+				img.setImageMatrix(matrix);
+				
+				
+			}
+		});
         
+        btnANG_up.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				f = f + 15f;
+				if(f == -360){
+					f = 0f;
+				}else if(f == 360){
+					f = 0f;
+				}
+					
+				av.setText(String.valueOf(f));
+				Log.i("BUTTON-UP", "STEP 1 Hit");
+				Matrix matrix=new Matrix();
+				img.setScaleType(ScaleType.MATRIX);   
+				matrix.postRotate( f, img.getDrawable().getBounds().width()/2, img.getDrawable().getBounds().height()/2);
+				img.setImageMatrix(matrix);
+				
+				
+			}
+		});
         
         
         
