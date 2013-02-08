@@ -4,5 +4,10 @@
     <string name="app_name">MDF3_Imp_Intent</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="enter_subject">Enter Subject</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="send">SEND</string>
+    <string name="this_app_fires_from_the_action_send_for_any_image">This App fires from the Action.SEND for any IMAGE</string>
 
 </resources>

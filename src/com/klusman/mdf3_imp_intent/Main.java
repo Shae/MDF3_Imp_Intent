@@ -1,6 +1,7 @@
 package com.klusman.mdf3_imp_intent;
 
 
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -41,10 +42,11 @@ public class Main extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
+       // Object obj = getIntent().getExtras().get(Intent.EXTRA_STREAM);
         
         img = (ImageView) findViewById(R.id.imageView1);
         Bundle extras = getIntent().getExtras();
-        
+       // File path =  get
         
         tv = (TextView)findViewById(R.id.textView1);
         av = (TextView)findViewById(R.id.angleTxt);
@@ -69,6 +71,7 @@ public class Main extends Activity {
         
         
         btnADD.setOnClickListener(new View.OnClickListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View v) {
 				int myNum = 0;
@@ -90,6 +93,7 @@ public class Main extends Activity {
         
         
         btnSUB.setOnClickListener(new View.OnClickListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View v) {
 				int myNum = 0;
@@ -179,7 +183,66 @@ public class Main extends Activity {
 	};// end myToast
 	
 	
+	
+	
+	
+	
+	
+	
+	
+/*	
+	private OnClickListener shareByEmail = new OnClickListener(){
+        @Override
+        public void onClick(View v) {
 
+
+       String address = "your emailaddress";
+       File filee;
+       
+       if(address.length()==0)  
+       {
+           AlertDialog.Builder ab=new AlertDialog.Builder(null);
+            ab.setMessage("Email Address must not be empty!");
+            ab.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+               @Override 
+               public void onClick(DialogInterface dialog, int which) {
+
+               }
+            });
+            ab.show();
+       }
+       else
+       {
+
+          ArrayList<Uri> uris = new ArrayList<Uri>();
+         Uri u;
+         Intent emailSession = new Intent(Intent.ACTION_SEND_MULTIPLE);
+         emailSession.putExtra(Intent.EXTRA_SUBJECT,"your subject");
+         emailSession.setType("images/*");
+         emailSession.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {address});
+         emailSession.putExtra(android.content.Intent.EXTRA_TEXT,"body text");
+        FileWriter fw;
+        BufferedWriter bw;
+        try{
+
+              filee = new File((Uri) getIntent().getExtras().get(Intent.EXTRA_STREAM));
+              if(filee.exists())
+              {
+
+                Uri u1 = Uri.fromFile(filee);
+                uris.add(u1);
+                emailSession.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+
+             startActivity(emailSession);
+            }
+        }
+            catch (ActivityNotFoundException e)
+            {
+                Toast.makeText(getBaseContext(),  e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+    }}
+    };
+*/
 	
 }
 
